@@ -2836,7 +2836,7 @@ bool ConnectBlock(const CBlock& block, CValidationState& state, CBlockIndex* pin
     CAmount fundReward = 0.2 * COIN;
     int nNextHeight = chainActive.Height() + 1;
 
-    if (nNextHeight > Params().GetConsensus().nPhase1LastBlock && nNextHeight <= Params().GetConsensus().nPhase3LastBlock) {
+    if (nNextHeight > Params().GetConsensus().nDevPhaseTotalBlocks && nNextHeight <= Params().GetConsensus().nPhase5LastBlock) {
         fundReward = 0.2 * COIN; // Developer Gov fund amount
 
         if (!IsFundRewardValid(block.vtx[0], fundReward)) {
