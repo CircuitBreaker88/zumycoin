@@ -1775,36 +1775,36 @@ CAmount GetPoWBlockPayment(const int& nHeight, CAmount nFees)
         LogPrint("creation", "GetPoWBlockPayment() : create=%s PoW Reward=%d\n", FormatMoney(nIntPoWReward), nIntPoWReward);
         return nIntPoWReward;
     }
-    else if (chainActive.Height() >= 2700 && nNextHeight <= 375002 {
+    else if (chainActive.Height() >= 2700 && nNextHeight <= 375002) {
         nIntPoWReward = 1.6* COIN;
         LogPrint("creation", "GetPoWBlockPayment() : create=%s PoW Reward=%d\n", FormatMoney(nIntPoWReward), nIntPoWReward);
         return nIntPoWReward;
     }
-    else if (chainActive.Height() >= 375003 && nNextHeight <= 467001 {
+    else if (chainActive.Height() >= 375003 && nNextHeight <= 467001) {
         nIntPoWReward = 1.4* COIN;
         LogPrint("creation", "GetPoWBlockPayment() : create=%s PoW Reward=%d\n", FormatMoney(nIntPoWReward), nIntPoWReward);
         return nIntPoWReward;
     }
-    else if (chainActive.Height() >= 467002 && nNextHeight <= 592001 {
+    else if (chainActive.Height() >= 467002 && nNextHeight <= 592001) {
         nIntPoWReward = 1.2* COIN;
         LogPrint("creation", "GetPoWBlockPayment() : create=%s PoW Reward=%d\n", FormatMoney(nIntPoWReward), nIntPoWReward);
         return nIntPoWReward;
     }
-    else if (chainActive.Height() >= 592002 && nNextHeight <= 717000 {
+    else if (chainActive.Height() >= 592002 && nNextHeight <= 717000) {
         nIntPoWReward = 1* COIN;
         LogPrint("creation", "GetPoWBlockPayment() : create=%s PoW Reward=%d\n", FormatMoney(nIntPoWReward), nIntPoWReward);
         return nIntPoWReward;
-    }    else if (chainActive.Height() >= 717001 && nNextHeight <= 842000 {
+    }    else if (chainActive.Height() >= 717001 && nNextHeight <= 842000) {
         nIntPoWReward = 0.8* COIN;
         LogPrint("creation", "GetPoWBlockPayment() : create=%s PoW Reward=%d\n", FormatMoney(nIntPoWReward), nIntPoWReward);
         return nIntPoWReward;
     }
-    else if (chainActive.Height() >= 842001 && nNextHeight <= 967000 {
+    else if (chainActive.Height() >= 842001 && nNextHeight <= 967000) {
         nIntPoWReward = 0.9* COIN;
         LogPrint("creation", "GetPoWBlockPayment() : create=%s PoW Reward=%d\n", FormatMoney(nIntPoWReward), nIntPoWReward);
         return nIntPoWReward;
     }
-    else if (chainActive.Height() >= 967001 && nNextHeight <= 1092000 {
+    else if (chainActive.Height() >= 967001 && nNextHeight <= 1092000) {
         nIntPoWReward = 1.2* COIN;
         LogPrint("creation", "GetPoWBlockPayment() : create=%s PoW Reward=%d\n", FormatMoney(nIntPoWReward), nIntPoWReward);
         return nIntPoWReward;
@@ -2836,7 +2836,7 @@ bool ConnectBlock(const CBlock& block, CValidationState& state, CBlockIndex* pin
     CAmount fundReward = 0.2 * COIN;
     int nNextHeight = chainActive.Height() + 1;
 
-    if (nNextHeight > Params().GetConsensus().nDevPhaseTotalBlocks && nNextHeight <= Params().GetConsensus().nPhase5LastBlock) {
+    if (chainActive.Height() >= 375005 && nNextHeight <= Params().GetConsensus().nPhase1LastBlock) {
         fundReward = 0.2 * COIN; // Developer Gov fund amount
 
         if (!IsFundRewardValid(block.vtx[0], fundReward)) {
