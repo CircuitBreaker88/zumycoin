@@ -311,7 +311,7 @@ void CMasternodePayments::FillBlockPayee(CMutableTransaction& txNew, CAmount nFe
 
     txNew.vout[0].nValue = PoWPayment;
 
-    if (chainActive.Height() >= 375005 && nNextHeight <= Params().GetConsensus().nPhase1LastBlock) {
+    if (nNextHeight > 375005 && nNextHeight < Params().GetConsensus().nPhase1LastBlock) {
         txNew.vout.resize(2);
         txNew.vout[0].nValue = PoWPayment;
 
