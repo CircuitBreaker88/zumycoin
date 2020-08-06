@@ -311,7 +311,7 @@ void CMasternodePayments::FillBlockPayee(CMutableTransaction& txNew, CAmount nFe
 
     txNew.vout[0].nValue = PoWPayment;
 
-    if (nNextHeight > 375005 && nNextHeight < Params().GetConsensus().nPhase1LastBlock) {
+    if (nNextHeight > Params().GetConsensus().nDevPhaseTotalBlocks && nNextHeight <= Params().GetConsensus().nPhase5LastBlock) {
         txNew.vout.resize(2);
         txNew.vout[0].nValue = PoWPayment;
 
@@ -334,7 +334,7 @@ void CMasternodePayments::FillBlockPayee(CMutableTransaction& txNew, CAmount nFe
         txNew.vout[1].scriptPubKey = payee;
         txNew.vout[1].nValue = MNPayment;
 
-        if (nNextHeight > 375005 && nNextHeight < Params().GetConsensus().nPhase1LastBlock) {
+        if (nNextHeight > Params().GetConsensus().nDevPhaseTotalBlocks && nNextHeight <= Params().GetConsensus().nPhase5LastBlock) {
             txNew.vout.resize(3);
 
             txNew.vout[0].nValue = PoWPayment;
@@ -1009,6 +1009,7 @@ int CMasternodePayments::GetStorageLimit()
     return std::max(int(mnodeman.size() * nStorageCoeff), nMinBlocksToStore);
 }
 
+void CMasternodePayments::UpdatedBlockTip(const CBlockIndex *pindex)
 void CMasternodePayments::UpdatedBlockTip(const CBlockIndex *pindex)
 {
     pCurrentBlockIndex = pindex;

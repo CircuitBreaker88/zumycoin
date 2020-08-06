@@ -776,7 +776,7 @@ UniValue getblocktemplate(const UniValue& params, bool fHelp)
 
     int nNextHeight = chainActive.Height() + 1;
 
-    if (nNextHeight > 375005 && nNextHeight < Params().GetConsensus().nPhase1LastBlock) {		
+    if (nNextHeight >= 375005 && nNextHeight <= Params().GetConsensus().nPhase3LastBlock) {
 
         UniValue fundRewardObj(UniValue::VOBJ);
         std::string strDevAddress = "ZUMYD3VX7ZcbBpdZMtMNioAAKQjKguKWmd"; // add gov payment addy later

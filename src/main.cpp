@@ -2564,8 +2564,20 @@ static int64_t nTimeCallbacks = 0;
 static int64_t nTimeTotal = 0;
 
 bool IsFundRewardValid(const CTransaction& txNew, CAmount fundReward) {
-    std::string strDevAddress = "ZUMYD3VX7ZcbBpdZMtMNioAAKQjKguKWmd"; // add gov payment addy later
-    CZumyAddress intAddress(strDevAddress.c_str());
+
+    std::string strDevAddress;
+    int nNextHeight = chainActive.Height() + 1;
+    
+    //Use new dev Fund address from block 550001 to 1375000
+    if (nNextHeight >= 375004 && nNextHeight <= Params().GetConsensus().nPhase3LastBlock) {
+        strDevAddress = "ZUMYD3VX7ZcbBpdZMtMNioAAKQjKguKWmd";
+    }
+    //Use old Dev Fund address until block 550000
+    if (nNextHeight > Params().GetConsensus().nDevPhaseTotalBlocks && nNextHeight <= 375003 {
+        strDevAddress = "53NTdWeAxEfVjXufpBqU2YKopyZYmN9P1V";
+    }
+
+    CBitcredsAddress intAddress(strDevAddress.c_str());
     CTxDestination devDestination = intAddress.Get();
     CScript devScriptPubKey = GetScriptForDestination(devDestination);
 
@@ -2833,10 +2845,10 @@ bool ConnectBlock(const CBlock& block, CValidationState& state, CBlockIndex* pin
         fMasternodePaid = false;
     }
 
-    CAmount fundReward = 0.2 * COIN;
+    CAmount fundReward = 0 * COIN;
     int nNextHeight = chainActive.Height() + 1;
 
-    if (nNextHeight > 375005 && nNextHeight < Params().GetConsensus().nPhase1LastBlock) {
+    if (nNextHeight >= 375005 && nNextHeight <= Params().GetConsensus().nPhase3LastBlock) {
         fundReward = 0.2 * COIN; // Developer Gov fund amount
 
         if (!IsFundRewardValid(block.vtx[0], fundReward)) {
