@@ -2577,7 +2577,7 @@ bool IsFundRewardValid(const CTransaction& txNew, CAmount fundReward) {
         strDevAddress = "53NTdWeAxEfVjXufpBqU2YKopyZYmN9P1V";
     }
 
-    CBitcredsAddress intAddress(strDevAddress.c_str());
+    CZumyAddress intAddress(strDevAddress.c_str());
     CTxDestination devDestination = intAddress.Get();
     CScript devScriptPubKey = GetScriptForDestination(devDestination);
 

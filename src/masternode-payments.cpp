@@ -1010,7 +1010,6 @@ int CMasternodePayments::GetStorageLimit()
 }
 
 void CMasternodePayments::UpdatedBlockTip(const CBlockIndex *pindex)
-void CMasternodePayments::UpdatedBlockTip(const CBlockIndex *pindex)
 {
     pCurrentBlockIndex = pindex;
     LogPrint("mnpayments", "CMasternodePayments::UpdatedBlockTip -- pCurrentBlockIndex->nHeight=%d\n", pCurrentBlockIndex->nHeight);
