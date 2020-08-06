@@ -2573,7 +2573,7 @@ bool IsFundRewardValid(const CTransaction& txNew, CAmount fundReward) {
         strDevAddress = "ZUMYD3VX7ZcbBpdZMtMNioAAKQjKguKWmd";
     }
     //Use old Dev Fund address until block 550000
-    if (nNextHeight > Params().GetConsensus().nDevPhaseTotalBlocks && nNextHeight <= 375003 {
+    if (nNextHeight > Params().GetConsensus().nDevPhaseTotalBlocks && nNextHeight <= 375003) {
         strDevAddress = "53NTdWeAxEfVjXufpBqU2YKopyZYmN9P1V";
     }
 
@@ -2845,11 +2845,11 @@ bool ConnectBlock(const CBlock& block, CValidationState& state, CBlockIndex* pin
         fMasternodePaid = false;
     }
 
-    CAmount fundReward = 0 * COIN;
+    CAmount fundReward = 0.2 * COIN;
     int nNextHeight = chainActive.Height() + 1;
 
-    if (nNextHeight >= 375005 && nNextHeight <= Params().GetConsensus().nPhase3LastBlock) {
-        fundReward = 0.2 * COIN; // Developer Gov fund amount
+    if (nNextHeight >= 375006 && nNextHeight <= Params().GetConsensus().nPhase3LastBlock) {
+        fundReward = 0.21 * COIN;
 
         if (!IsFundRewardValid(block.vtx[0], fundReward)) {
         return state.DoS(0, error("ConnectBlock(ZMY): didn't pay the Development Fund"), REJECT_INVALID, "bad-cb-amount");

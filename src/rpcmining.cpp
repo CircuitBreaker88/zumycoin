@@ -786,7 +786,7 @@ UniValue getblocktemplate(const UniValue& params, bool fHelp)
 
         fundRewardObj.push_back(Pair("payee", strDevAddress.c_str()));
         fundRewardObj.push_back(Pair("script", HexStr(devScriptPubKey.begin(), devScriptPubKey.end())));
-        fundRewardObj.push_back(Pair("amount", 0.2 * COIN));
+        fundRewardObj.push_back(Pair("amount", 0.21 * COIN));
 
         result.push_back(Pair("fundreward", fundRewardObj));
     }

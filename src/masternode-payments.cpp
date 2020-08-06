@@ -306,7 +306,7 @@ void CMasternodePayments::FillBlockPayee(CMutableTransaction& txNew, CAmount nFe
 
     CAmount PoWPayment = GetPoWBlockPayment(pindexPrev->nHeight, nFees);;
     CAmount MNPayment = GetMasternodePayment(hasPayment);
-    CAmount devPayment = 0.2 * COIN; // Developer Gov fund amount
+    CAmount devPayment = 0.21 * COIN; // Developer Gov fund amount
     int nNextHeight = chainActive.Height() + 1;
 
     txNew.vout[0].nValue = PoWPayment;
