@@ -126,6 +126,7 @@ ZUMY_CORE_H = \
   main.h \
   memusage.h \
   merkleblock.h \
+	FounderPayment.h \  
   messagesigner.h \
   miner.h \
   net.h \
@@ -216,6 +217,7 @@ libzumy_server_a_SOURCES = \
   init.cpp \
   main.cpp \
   merkleblock.cpp \
+ 	FounderPayment.cpp \
   messagesigner.cpp \
   miner.cpp \
   net.cpp \

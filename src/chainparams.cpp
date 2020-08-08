@@ -108,6 +108,7 @@ public:
         strNetworkID = "main";
         consensus.nHardForkOne = 250000; // block
         consensus.nHardForkTwo = 1999999999; // block
+        consensus.nFounderPaymentsStartBlock = 375007;		
         consensus.nMasternodePaymentsStartBlock = 10801; // Masternode Payments begin on block 10800 .
         consensus.nInstantSendKeepLock = 24;
         consensus.nBudgetPaymentsStartBlock = 20545; // Zumy doesn't use budget payments.

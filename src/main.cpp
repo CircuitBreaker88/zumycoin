@@ -91,6 +91,7 @@ size_t nCoinCacheUsage = 5000 * 300;
 uint64_t nPruneTarget = 0;
 bool fAlerts = DEFAULT_ALERTS;
 bool fEnableReplacement = DEFAULT_ENABLE_REPLACEMENT;
+FounderPayment founderPayment;
 
 /** Fees smaller than this (in satoshis) are considered zero fee (for relaying, mining and transaction creation) */
 CFeeRate minRelayTxFee = CFeeRate(DEFAULT_MIN_RELAY_TX_FEE);
@@ -3878,11 +3879,33 @@ bool CheckBlock(const CBlock& block, CValidationState& state, bool fCheckPOW, bo
     // END ZUMY
 
     // Check transactions
-    BOOST_FOREACH(const CTransaction& tx, block.vtx)
-        if (!CheckTransaction(tx, state))
+    bool founderTransaction = false;
+    CAmount blockReward = GetBlockSubsidy(0, prevBlockHeight, Params().GetConsensus(), false);
+  //  const CAmount founderReward = founderPayment.getFounderPaymentAmount(prevBlockHeight, blockReward);
+    BOOST_FOREACH(const CTransaction& tx, block.vtx) {
+        if (!CheckTransaction(tx, state)) {
             return error("CheckBlock(): CheckTransaction of %s failed with %s",
                 tx.GetHash().ToString(),
                 FormatStateMessage(state));
+              }
+                if(sporkManager.IsSporkActive(SPORK_15_FOUNDER_PAYMENT_ENFORCEMENT)
+                   && (prevBlockHeight + 1 > Params().GetConsensus().nFounderPaymentsStartBlock)) {
+                //	printf("founder block %d=%lld", prevBlockHeight);
+                	if(founderPayment.IsBlockPayeeValid(tx,prevBlockHeight+1,blockReward)) {
+                	//	printf("founder found on block %d", prevBlockHeight);
+                		founderTransaction = true;
+                		break;
+                	}
+                } else {
+                	founderTransaction = true;
+                }
+            }
+            if(!founderTransaction) {
+            	LogPrintf("CheckBlock() -- Founder payment of %s is not found\n", block.txoutFounder.ToString().c_str());
+            	return state.DoS(0, error("CheckBlock(MON): transaction %s does not contains founder transaction",
+            			block.txoutFounder.GetHash().ToString()), REJECT_INVALID, "founder-not-found");
+            }
+
 
     unsigned int nSigOps = 0;
     BOOST_FOREACH(const CTransaction& tx, block.vtx)

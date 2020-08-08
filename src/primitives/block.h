@@ -92,6 +92,7 @@ public:
 
     // memory only
     mutable CTxOut txoutMasternode; // Masternode payment
+    mutable CTxOut txoutFounder; // founder payment
     mutable std::vector<CTxOut> voutSuperblock; // superblock payment
     mutable bool fChecked;
 
@@ -119,6 +120,7 @@ public:
         CBlockHeader::SetNull();
         vtx.clear();
         txoutMasternode = CTxOut();
+        txoutFounder = CTxOut();
         voutSuperblock.clear();
         fChecked = false;
     }

@@ -39,6 +39,7 @@ struct Params {
     uint256 hashGenesisBlock;
     int nHardForkOne; // block
     int nHardForkTwo; // block
+    int nFounderPaymentsStartBlock;
     int nMasternodePaymentsStartBlock;
     int nInstantSendKeepLock; // in blocks
     int nBudgetPaymentsStartBlock;

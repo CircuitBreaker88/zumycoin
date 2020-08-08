@@ -402,6 +402,8 @@ std::unique_ptr<CBlockTemplate> CreateNewBlock(const CChainParams& chainparams, 
 
 
         CAmount blockReward = GetPoWBlockPayment(nHeight, nFees);
+		
+        FounderPayment founderPayment;
 
         // Compute regular coinbase transaction.
         txNew.vout[0].nValue = blockReward;
@@ -412,6 +414,7 @@ std::unique_ptr<CBlockTemplate> CreateNewBlock(const CChainParams& chainparams, 
         FillBlockPayments(txNew, nHeight, blockReward, pblock->txoutMasternode, pblock->voutSuperblock);
         // LogPrintf("CreateNewBlock -- nBlockHeight %d blockReward %lld txoutMasternode %s txNew %s",
         //             nHeight, blockReward, pblock->txoutMasternode.ToString(), txNew.ToString());
+        founderPayment.FillFounderPayment(txNew, nHeight, blockReward, pblock->txoutFounder);		
 
         nLastBlockTx = nBlockTx;
         nLastBlockSize = nBlockSize;

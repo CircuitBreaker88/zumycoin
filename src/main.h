@@ -20,6 +20,7 @@
 #include "spentindex.h"
 #include "sync.h"
 #include "versionbits.h"
+#include "FounderPayment.h"
 
 #include <algorithm>
 #include <exception>
@@ -167,6 +168,7 @@ extern size_t nCoinCacheUsage;
 extern CFeeRate minRelayTxFee;
 extern bool fAlerts;
 extern bool fEnableReplacement;
+extern FounderPayment founderPayment;
 
 extern std::map<uint256, int64_t> mapRejectedBlocks;
 
