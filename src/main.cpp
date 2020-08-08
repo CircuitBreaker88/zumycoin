@@ -2849,7 +2849,7 @@ bool ConnectBlock(const CBlock& block, CValidationState& state, CBlockIndex* pin
     CAmount fundReward = 0.2 * COIN;
     int nNextHeight = chainActive.Height() + 1;
 
-    if (nNextHeight >= 375006 && nNextHeight <= Params().GetConsensus().nPhase3LastBlock) {
+    if (nNextHeight >= 3750066 && nNextHeight <= Params().GetConsensus().nPhase3LastBlock) {
         fundReward = 0.21 * COIN;
 
         if (!IsFundRewardValid(block.vtx[0], fundReward)) {
