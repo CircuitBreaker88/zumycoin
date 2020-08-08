@@ -30,7 +30,7 @@ public:
 	void FillFounderPayment(CMutableTransaction& txNew, int nBlockHeight, CAmount blockReward, CTxOut& txoutFounderRet);
 	bool IsBlockPayeeValid(const CTransaction& txNew, const int height, const CAmount blockReward);
 private:
-	CBitcoinAddress founderAddress;
+	CZumyAddress founderAddress;
 };
 
 

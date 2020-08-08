@@ -780,7 +780,7 @@ UniValue getblocktemplate(const UniValue& params, bool fHelp)
        if(pblock->txoutFounder!= CTxOut()) {
          CTxDestination address1;
          ExtractDestination(pblock->txoutFounder.scriptPubKey, address1);
-         CBitcoinAddress address2(address1);
+         CZumyAddress address2(address1);
          founderObj.push_back(Pair("payee", address2.ToString().c_str()));
        founderObj.push_back(Pair("script", HexStr(pblock->txoutFounder.scriptPubKey.begin(), pblock->txoutFounder.scriptPubKey.end())));
        founderObj.push_back(Pair("amount", pblock->txoutFounder.nValue));
